@@ -71,6 +71,7 @@ class FileDict(UserDict):
         UserDict.__init__(self)
         self.filename = fname
         self.seperator = sep
+        self.fileRead()
 
     def fileRead(self):
         """ reads from file into FileDict
