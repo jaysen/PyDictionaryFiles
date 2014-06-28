@@ -1,8 +1,10 @@
 """ dictfiles.py
     version 0.3
 
-    Reads dictionary values to and from specially formatted text files.
-    Preserves comments and non key:value pairs
+    Reads key/value pairs to and from being embedded within
+    normal text files.
+    Leaves all non key:value text alone / preserves comments and non key:value pairs.
+    Processes multiple key:value formats.
 
     by Jaysen Naidoo
     2014.06.28
