@@ -7,8 +7,6 @@ normal text files.
 Leaves all non key:value text alone / preserves comments and non key:value pairs.
 Processes multiple key:value formats.
 
-by Jaysen Naidoo (2014.06.28)
-
 
 ##Features:
 * Read key:value pairs from normal text file
