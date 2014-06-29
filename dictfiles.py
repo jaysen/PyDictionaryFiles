@@ -73,6 +73,29 @@ class FileDict(UserDict):
         self.seperator = sep
         self.fileRead()
 
+    def isDictPair(self, fileline):
+        """ returns true if
+            the line passed in contains (even in part) a Dictionary Key:Value Pair
+            false otherwise.
+        """
+        templine = fileline
+        splitline = templine.split(self.seperator)
+        if len(splitline) > 1:
+            tempkey = splitline[0].strip()
+            tempval = splitline[1].strip()
+            if tempkey in self.data:
+                if tempdict[tempkey] == tempval:
+
+
+    def isPairChanged(self, fileline):
+        """ Returns true - if the fileline contains a pair
+            and - pair has changed since it was last read.
+            either changed by external write to file 
+            or 
+            change by updating dictionary
+        """
+        pass
+
     def fileRead(self):
         """ reads from file into FileDict
             returns 1 if file exists - else returns 0
