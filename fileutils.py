@@ -26,7 +26,7 @@ import os
 import sys
 
 
-# ---file convenience functions---#000000#FFFFFF---------------------------------
+# ---file edit functions---#000000#FFFFFF---------------------------------
 
 def editfile(fname, func, keepbackups=True):
     """ Given a filename fname, and a function, editFunc
@@ -59,14 +59,26 @@ def editfile(fname, func, keepbackups=True):
         return 0
 
 
-def renamefile(old, new, deleteExisting='safe'):
-    """ renames file old to new
-            Needs to be called with deleteexisting == 'unsafe' to rename if new filename already exists
-    """
-    if os.path.exists(new):
-        if deleteExisting == 'unsafe':
-            os.remove(new)
-    os.rename(old, new)
+# ---word based functions---#000000#FFFFFF---------------------------------
+
+def wordcount(file):
+    """ read a file and count the words. return a dictionary of the words and frequencies"""
+    handle = open(file)
+    text = handle.read()
+    handle.close()
+
+    words = text.split()
+
+    count = dict()
+    for word in words:
+        if word in count:
+            count[word] += 1
+        else:
+            count[word] = 1
+    return count
+
+
+# ---file line based functions---#000000#FFFFFF---------------------------------
 
 
 def getlinecount(fname):
@@ -92,11 +104,6 @@ def addlinenums(fname):
 
 
 # ---Functions from pathutils---#00FF00#040404-----------------------------------
-# the following functions by Michael Foord :
-# Copyright Michael Foord 2004
-# Released subject to the BSD License
-# Please see http://www.voidspace.org.uk/documents/BSD-LICENSE.txt
-
 
 # ---Functions to read and write files in text and binary mode.---#000000#FFFFFF-
 
@@ -163,7 +170,17 @@ def printfile(filename):
     for l in readlines(filename):
         print l,
 
-# ------#000000#FFFFFF-----------------------------------------------------------
+# ---Copy, Move, Rename, Delete, Backup Functions---#000000#FFFFFF---------------
+
+
+def renamefile(old, new, deleteExisting='safe'):
+    """ renames file old to new
+            Needs to be called with deleteexisting == 'unsafe' to rename if new filename already exists
+    """
+    if os.path.exists(new):
+        if deleteExisting == 'unsafe':
+            os.remove(new)
+    os.rename(old, new)
 
 
 def fullcopy(src, dst):
@@ -192,7 +209,7 @@ def backup(filename):
     return bakfile
 
 
-# ------#000000#FFFFFF-----------------------------------------------------------
+# ---Module Helper ---#000000#FFFFFF------------------------------------------------
 def import_path(fullpath, strict=True):
     """
     Import a file from the full path. Allows you to import from anywhere,
